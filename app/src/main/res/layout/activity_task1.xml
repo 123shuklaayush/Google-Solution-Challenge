@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:padding="16dp">
 
+    <!-- Title -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Area"
+        android:text="To-Do List"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Input field -->
+    <EditText
+        android:id="@+id/area_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Area Name" />
+
+    <EditText
+        android:id="@+id/last_time_watered_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last time watered plants"
+        android:onClick="showDatePickerDialog"/>
+
+    <!-- Add button -->
     <Button
-        android:id="@+id/buttonAddArea"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Area"/>
+        android:id="@+id/button"
+        android:text="Add Task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <ListView
-        android:id="@+id/listViewAreas"
+    <!-- To-do list -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        android:background="@drawable/border"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/listLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
 </LinearLayout>
