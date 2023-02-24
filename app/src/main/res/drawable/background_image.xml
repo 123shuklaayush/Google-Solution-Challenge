@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Add your image here -->
+    <item>
+        <bitmap android:src="@drawable/your_background_image" />
+    </item>
+    <!-- Add a semi-transparent overlay on top of the image to reduce opacity -->
+    <item>
+        <shape android:shape="rectangle">
+        </shape>
+    </item>
+</layer-list>
