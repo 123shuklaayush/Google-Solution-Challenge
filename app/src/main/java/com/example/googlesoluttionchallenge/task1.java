@@ -2,6 +2,7 @@ package com.example.googlesoluttionchallenge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -125,15 +126,17 @@ public class task1 extends AppCompatActivity {
         lastTimeWateredTextView.setPadding(16, 8, 16, 16);
         taskLayout.addView(lastTimeWateredTextView);
 
+        // Set OnClickListener to open TaskDetailsActivity when the task is clicked
+        taskLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(task1.this, TaskDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Add the task to the list
         listLayout.addView(taskLayout);
-
-        SharedPreferences prefs = getSharedPreferences("task_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("area_name", areaName);
-        editor.putString("last_time_watered", lastTimeWatered);
-        editor.apply();
-
 
         // Scroll to the bottom of the list
         scrollView.post(new Runnable() {

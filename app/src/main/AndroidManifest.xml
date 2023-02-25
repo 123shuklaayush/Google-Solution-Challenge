@@ -12,9 +12,12 @@
         android:theme="@style/Theme.GoogleSoluttionChallenge"
         tools:targetApi="31">
         <activity
+            android:name=".TaskDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".task1"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
