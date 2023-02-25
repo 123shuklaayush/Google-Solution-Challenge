@@ -22,5 +22,8 @@
         <item name="colorAccent">#FF4081</item>
 
     </style>
+    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorAccent</item> <!-- set the accent color here -->
+    </style>
 
 </resources>

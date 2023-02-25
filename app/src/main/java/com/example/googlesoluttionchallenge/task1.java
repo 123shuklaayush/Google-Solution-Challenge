@@ -1,6 +1,8 @@
 package com.example.googlesoluttionchallenge;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,7 @@ public class task1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1);
+
         areaNameEditText = findViewById(R.id.area_name_edit_text);
         lastTimeWateredEditText = findViewById(R.id.last_time_watered_edit_text);
         addButton = findViewById(R.id.button);
@@ -55,6 +58,7 @@ public class task1 extends AppCompatActivity {
                 }
             }
         });
+
         lastTimeWateredEditText = findViewById(R.id.last_time_watered_edit_text);
         lastTimeWateredEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +74,7 @@ public class task1 extends AppCompatActivity {
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 // Set the chosen date to the EditText field
                                 lastTimeWateredEditText.setText(day + "/" + (month + 1) + "/" + year);
+
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -81,6 +86,15 @@ public class task1 extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        SharedPreferences prefs = getSharedPreferences("task_prefs", MODE_PRIVATE);
+        String areaName = prefs.getString("area_name", "");
+        String lastTimeWatered = prefs.getString("last_time_watered", "");
+        if (!areaName.isEmpty() && !lastTimeWatered.isEmpty()) {
+            addTask(areaName, lastTimeWatered);
+        }
+
+
+
     }
     private void addTask(String areaName, String lastTimeWatered) {
         // Create a new LinearLayout to hold the task information
@@ -113,6 +127,13 @@ public class task1 extends AppCompatActivity {
 
         // Add the task to the list
         listLayout.addView(taskLayout);
+
+        SharedPreferences prefs = getSharedPreferences("task_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("area_name", areaName);
+        editor.putString("last_time_watered", lastTimeWatered);
+        editor.apply();
+
 
         // Scroll to the bottom of the list
         scrollView.post(new Runnable() {
